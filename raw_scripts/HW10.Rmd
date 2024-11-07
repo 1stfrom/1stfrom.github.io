@@ -57,5 +57,7 @@ ingredient_count %>%
   theme_minimal()
 ```
 
+---
+
 # My CV
  - [View CV](../resource/CV.pdf)
