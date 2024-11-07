@@ -58,4 +58,4 @@ ingredient_count %>%
 ```
 
 # My CV
-[View CV](../resource/CV.pdf)
+ - [View CV](../resource/CV.pdf)
