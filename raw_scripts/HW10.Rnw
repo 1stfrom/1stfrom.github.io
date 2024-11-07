@@ -15,7 +15,7 @@
   \begin{itemize}
     \item \textbf{Birthday:} Aug 31, 1998
     \item \textbf{Hometown:} Tong Chuan, Xi'an, China
-    \item \textbf{Program:} Plant Breeding and Genetics
+    \item \textbf{Program:} Plant Breeding and Genetics, Now mainly working on root associates microbiome changes due to morden breeding.
     \item \textbf{Expected Graduation:} May, 2025
   \end{itemize}
 \end{frame}
@@ -64,7 +64,7 @@ ggplot(ingredient_count, aes(x = reorder(Ingredient, Proportion), y = Proportion
 
 \begin{frame}{My CV}
   \begin{itemize}
-    \item [CV Link:] \href{../resource/CV.pdf}{Download My CV}
+    \item [CV Link:] \href{https://1stfrom.github.io/resource/CV.pdf}{View My CV}
   \end{itemize}
 \end{frame}
 
