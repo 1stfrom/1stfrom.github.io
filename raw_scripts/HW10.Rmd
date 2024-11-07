@@ -1,0 +1,61 @@
+---
+title: "My Introduction"
+author: "Nathan Ma"
+date: "2024/11/03"
+output:
+  xaringan::moon_reader
+---
+
+# This is Nathan Ma
+Welcome to My Introduction
+
+## Biography
+- **Birthday:** Aug 31, 1998
+- **Hometown:** Tong Chuan, Xi'an, China
+- **Program:** Plant Breeding and Genetics
+- **Expected Graduation:** May, 2025
+
+---
+
+# Favorite Animal
+![Favorite Animal](https://s.yimg.com/ny/api/res/1.2/ZJ3Npm6ZR15QHzhVTx1.Yw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD05MjM-/https://s.yimg.com/os/creatr-images/2019-12/aacbee10-15ca-11ea-af93-1941b4bd60b5)
+
+---
+
+# My Favorite Plot
+
+```{r, echo=FALSE, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+cookie <- read.csv("../resource/choc_chip_cookie_ingredients.csv", stringsAsFactors = FALSE)
+cookie_data <- cookie[, -1]
+
+# Convert data types
+cookie_data$Ingredient <- as.character(cookie_data$Ingredient)
+cookie_data$Text <- as.character(cookie_data$Text)
+cookie_data$Recipe_Index <- as.character(cookie_data$Recipe_Index)
+cookie_data$Unit <- as.character(cookie_data$Unit)
+
+cookie_data$Rating <- as.numeric(cookie_data$Rating)
+cookie_data$Quantity <- as.numeric(cookie_data$Quantity)
+
+ingredient_count <- cookie_data %>%
+  group_by(Ingredient) %>%
+  summarise(Recipe_Count = n_distinct(Recipe_Index)) %>%
+  mutate(Total_Recipes = n_distinct(cookie_data$Recipe_Index),
+         Proportion = Recipe_Count / Total_Recipes) %>%
+  arrange(desc(Recipe_Count)) %>%
+  slice(1:20)
+
+ingredient_count %>%
+  ggplot(aes(x = reorder(Ingredient, Proportion), y = Proportion)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Proportion of Recipes Containing Each Ingredient (Top 20)",
+       x = "Ingredient",
+       y = "Proportion of Recipes") +
+  theme_minimal()
+```
+
+# My CV
+[View CV](../resource/CV.pdf)
