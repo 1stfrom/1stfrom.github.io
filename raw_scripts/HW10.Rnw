@@ -1,44 +1,47 @@
----
-title: "My Introduction"
-author: "Nathan Ma"
-date: "2024/11/03"
-output:
-  xaringan::moon_reader
----
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\title{My Introduction}
+\author{Nathan Ma}
+\date{2024/11/03}
 
-# This is Nathan Ma
-Welcome to My Introduction
+\begin{document}
 
-## Biography
-- **Birthday:** Aug 31, 1998
-- **Hometown:** Tong Chuan, Xi'an, China
-- **Program:** Plant Breeding and Genetics
-- **Expected Graduation:** May, 2025
+\begin{frame}
+  \titlepage
+\end{frame}
 
----
+\begin{frame}{Biography}
+  \begin{itemize}
+    \item \textbf{Birthday:} Aug 31, 1998
+    \item \textbf{Hometown:} Tong Chuan, Xi'an, China
+    \item \textbf{Program:} Plant Breeding and Genetics
+    \item \textbf{Expected Graduation:} May, 2025
+  \end{itemize}
+\end{frame}
 
-# Favorite Animal
-![Favorite Animal](https://s.yimg.com/ny/api/res/1.2/ZJ3Npm6ZR15QHzhVTx1.Yw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD05MjM-/https://s.yimg.com/os/creatr-images/2019-12/aacbee10-15ca-11ea-af93-1941b4bd60b5)
+\begin{frame}{Favorite Animal}
+  \includegraphics[width=\textwidth]{../resource/animal.jpg}
+\end{frame}
 
----
+\begin{frame}{My Favorite Plot}
 
-# My Favorite Plot
-
-```{r, echo=FALSE, message=FALSE}
+<<echo=FALSE, fig=TRUE, message=FALSE, warning=FALSE>>=
+# Load libraries
 library(ggplot2)
 library(tidyverse)
+
+# Load and preprocess data
 cookie <- read.csv("../resource/choc_chip_cookie_ingredients.csv", stringsAsFactors = FALSE)
 cookie_data <- cookie[, -1]
-
-# Convert data types
 cookie_data$Ingredient <- as.character(cookie_data$Ingredient)
 cookie_data$Text <- as.character(cookie_data$Text)
 cookie_data$Recipe_Index <- as.character(cookie_data$Recipe_Index)
 cookie_data$Unit <- as.character(cookie_data$Unit)
-
 cookie_data$Rating <- as.numeric(cookie_data$Rating)
 cookie_data$Quantity <- as.numeric(cookie_data$Quantity)
 
+# Process data and create plot
 ingredient_count <- cookie_data %>%
   group_by(Ingredient) %>%
   summarise(Recipe_Count = n_distinct(Recipe_Index)) %>%
@@ -47,19 +50,22 @@ ingredient_count <- cookie_data %>%
   arrange(desc(Recipe_Count)) %>%
   slice(1:20)
 
-ingredient_count %>%
-  ggplot(aes(x = reorder(Ingredient, Proportion), y = Proportion)) +
+# Plot the data
+ggplot(ingredient_count, aes(x = reorder(Ingredient, Proportion), y = Proportion)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   coord_flip() +
   labs(title = "Proportion of Recipes Containing Each Ingredient (Top 20)",
        x = "Ingredient",
        y = "Proportion of Recipes") +
   theme_minimal()
-```
+@
 
----
+\end{frame}
 
-# My CV
- 
- - [View CV](../resource/CV.pdf)
+\begin{frame}{My CV}
+  \begin{itemize}
+    \item [CV Link:] \href{../resource/CV.pdf}{Download My CV}
+  \end{itemize}
+\end{frame}
 
+\end{document}
